@@ -1,0 +1,13 @@
+name: TrichLHGApp
+title: TrichLHGApp
+username:
+account: kcmenvironmental
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9257801
+bundleId: 7311764
+url: https://kcmenvironmental.shinyapps.io/TrichLHGApp/
+when: 1686065386.16214
+lastSyncTime: 1686065386.16215
+asMultiple: FALSE
+asStatic: FALSE
