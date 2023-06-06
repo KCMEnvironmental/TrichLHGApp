@@ -129,16 +129,25 @@ server <- function(input, output) {
         
       # Create and save plot ----
         plot <- ggplot() + 
+          geom_path(data = data, 
+                    aes(x = as.numeric(`88Sr/Ca`), 
+                        y = as.numeric(`137Ba/Ca`), 
+                        colour = `Length (µm)`)) + 
           geom_point(data = data, 
                     aes(x = as.numeric(`88Sr/Ca`), 
                         y = as.numeric(`137Ba/Ca`), 
                         colour = `Length (µm)`)) + 
           theme_bw() +
-          scale_color_viridis(option = "D", 
-                              breaks = c(min(data$`Length (µm)`), 
-                                         median(data$`Length (µm)`), 
-                                         max(data$`Length (µm)`)), 
-                              labels = c("Core", "Middle","Edge")) +
+          scale_color_gradientn(colours = rainbow(5), 
+                                breaks = c(min(data$`Length (µm)`), 
+                                           median(data$`Length (µm)`), 
+                                           max(data$`Length (µm)`)), 
+                                labels = c("Core", "Middle","Edge")) +
+          # scale_color_viridis(option = "D", 
+          #                     breaks = c(min(data_p$`Length (µm)`), 
+          #                                median(data_p$`Length (µm)`), 
+          #                                max(data_p$`Length (µm)`)), 
+          #                     labels = c("Core", "Middle","Edge")) +
           labs(y = "Ba:Ca (µmol/mol)", 
                x = "Sr:Ca (µmol/mol)", 
                title = i) +
@@ -199,17 +208,26 @@ server <- function(input, output) {
                        "Ba:Ca ", round(data_p$`137Ba/Ca`, 0), " µmol/mol \n"))
     
     plot <- ggplot() + 
+      geom_path(data = data_p, 
+                             aes(x = as.numeric(`88Sr/Ca`), 
+                                 y = as.numeric(`137Ba/Ca`), 
+                                 colour = `Length (µm)`)) + 
       geom_point_interactive(data = data_p, 
                  aes(x = as.numeric(`88Sr/Ca`), 
                      y = as.numeric(`137Ba/Ca`), 
                      colour = `Length (µm)`, 
                      tooltip = tp)) + 
       theme_bw() +
-      scale_color_viridis(option = "D", 
-                          breaks = c(min(data_p$`Length (µm)`), 
-                                     median(data_p$`Length (µm)`), 
-                                     max(data_p$`Length (µm)`)), 
-                          labels = c("Core", "Middle","Edge")) +
+      scale_color_gradientn(colours = rainbow(5), 
+                            breaks = c(min(data_p$`Length (µm)`), 
+                                       median(data_p$`Length (µm)`), 
+                                       max(data_p$`Length (µm)`)), 
+                            labels = c("Core", "Middle","Edge")) +
+      # scale_color_viridis(option = "D", 
+      #                     breaks = c(min(data_p$`Length (µm)`), 
+      #                                median(data_p$`Length (µm)`), 
+      #                                max(data_p$`Length (µm)`)), 
+      #                     labels = c("Core", "Middle","Edge")) +
       labs(y = "Ba:Ca (µmol/mol)", 
            x = "Sr:Ca (µmol/mol)", 
            title = input$sampleIDs) +
